@@ -2,7 +2,7 @@ package ar.com.ada.sb.security.jwt.services;
 
 import ar.com.ada.sb.security.jwt.component.BusinessLogicExceptionComponent;
 import ar.com.ada.sb.security.jwt.model.dto.UserDto;
-import ar.com.ada.sb.security.jwt.model.entity.User;
+import ar.com.ada.sb.security.jwt.model.entity.security.User;
 import ar.com.ada.sb.security.jwt.model.mapper.circular.dependency.CycleAvoidingMappingContext;
 import ar.com.ada.sb.security.jwt.model.mapper.circular.dependency.UserCycleMapper;
 import ar.com.ada.sb.security.jwt.model.repository.UserRepository;

@@ -1,7 +1,7 @@
 package ar.com.ada.sb.security.jwt.model.mapper.circular.dependency;
 
 import ar.com.ada.sb.security.jwt.model.dto.UserDto;
-import ar.com.ada.sb.security.jwt.model.entity.User;
+import ar.com.ada.sb.security.jwt.model.entity.security.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
