@@ -5,7 +5,7 @@ import ar.com.ada.sb.security.jwt.model.dto.UserDto;
 import ar.com.ada.sb.security.jwt.model.entity.security.User;
 import ar.com.ada.sb.security.jwt.model.mapper.circular.dependency.CycleAvoidingMappingContext;
 import ar.com.ada.sb.security.jwt.model.mapper.circular.dependency.UserCycleMapper;
-import ar.com.ada.sb.security.jwt.model.repository.UserRepository;
+import ar.com.ada.sb.security.jwt.model.repository.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

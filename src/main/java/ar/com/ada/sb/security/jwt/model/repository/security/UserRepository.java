@@ -1,4 +1,4 @@
-package ar.com.ada.sb.security.jwt.model.repository;
+package ar.com.ada.sb.security.jwt.model.repository.security;
 
 import ar.com.ada.sb.security.jwt.model.entity.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
