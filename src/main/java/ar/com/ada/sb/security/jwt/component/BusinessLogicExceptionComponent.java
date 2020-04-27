@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component("businessLogicExceptionComponent")
 public class BusinessLogicExceptionComponent {
+
     public void throwExceptionEntityNotFound (String entityName, Long id){
         ApiEntityError apiEntityError = new ApiEntityError(
                 entityName,

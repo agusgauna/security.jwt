@@ -5,7 +5,7 @@ import org.mapstruct.InheritInverseConfiguration;
 
 import java.util.List;
 
-public interface DataCycleMapper<D, E> {
+public interface CycleDataMapper<D, E> {
     E toEntity(D dto, @Context CycleAvoidingMappingContext context);
 
     List<E> toEntity(List<D> dtoList, @Context CycleAvoidingMappingContext context);

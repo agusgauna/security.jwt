@@ -1,9 +1,12 @@
-package ar.com.ada.sb.security.jwt.controller;
+package ar.com.ada.sb.security.jwt.controller.security;
 
 import ar.com.ada.sb.security.jwt.model.dto.security.JwtAuthRequestBody;
 import ar.com.ada.sb.security.jwt.model.dto.security.JwtAuthResponseBody;
+import ar.com.ada.sb.security.jwt.services.security.AuthServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +23,20 @@ public class AuthController {
     @Value("${auth.jwt.type}")
     private String authJwtType;
 
+    @Autowired @Qualifier("authServices")
+    private AuthServices authServices;
+
     @PostMapping({"/login","/login/"})
     public ResponseEntity createAuthToken(@Valid @RequestBody JwtAuthRequestBody body) {
         LOGGER.info(body.toString());
-        JwtAuthResponseBody token = new JwtAuthResponseBody()
-                .setToken("token be here")
+
+        String token = authServices.jwtNewToken(body);
+
+        JwtAuthResponseBody jwtAuthResponseBody = new JwtAuthResponseBody()
+                .setToken(token)
                 .setType(authJwtType);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(jwtAuthResponseBody);
     }
 
 }

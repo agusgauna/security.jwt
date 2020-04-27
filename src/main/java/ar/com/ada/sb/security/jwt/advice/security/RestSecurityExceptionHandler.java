@@ -1,30 +1,32 @@
-package ar.com.ada.sb.security.jwt.advice;
+package ar.com.ada.sb.security.jwt.advice.security;
 
 import ar.com.ada.sb.security.jwt.exception.ApiEntityError;
 import ar.com.ada.sb.security.jwt.exception.ApiErrorsResponseBody;
 import ar.com.ada.sb.security.jwt.exception.BusinessLogicException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.NativeWebRequest;
 
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import java.util.Collections;
+
+
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestControllerAdvice
-public class BusinessLogicExceptionHandler {
+public class RestSecurityExceptionHandler {
 
-    @ExceptionHandler(BusinessLogicException.class)
-    public ResponseEntity handleBusinessLogicException(BusinessLogicException e, NativeWebRequest req) {
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity handleBusinessLogicException(BusinessLogicException ex, NativeWebRequest req) {
 
-        HttpStatus httpStatus = e.getHttpStatus() != null ?
-                e.getHttpStatus() :
-                INTERNAL_SERVER_ERROR;
+        HttpStatus httpStatus = UNAUTHORIZED;
 
-        ApiErrorsResponseBody apiErrorsResponseBody = new ApiErrorsResponseBody<ApiEntityError>(
+        ApiErrorsResponseBody apiErrorsResponseBody = new ApiErrorsResponseBody<>(
                 httpStatus.value(),
                 httpStatus.getReasonPhrase(),
-                e.getEntityErrors());
+                Collections.singletonList(ex.getMessage()));
 
         return ResponseEntity
                 .status(httpStatus)
