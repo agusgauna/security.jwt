@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, length = 50, unique = true)
-    private String userName;
+    private String username;
 
     @Column(nullable = false, length = 100)
     private String password;
@@ -37,7 +37,7 @@ public class User {
     private Boolean enabled;
 
     @ManyToMany
-    @JoinTable(name = "User_has_Authority",
+    @JoinTable(name = "User_Has_Authority",
     joinColumns = {@JoinColumn(name = "User_id", referencedColumnName = "id") },
     inverseJoinColumns = {@JoinColumn(name = "Authority_id", referencedColumnName = "id") })
     private Set<Authority> authorities;
@@ -47,8 +47,8 @@ public class User {
         return this;
     }
 
-    public User setUserName(String userName) {
-        this.userName = userName;
+    public User setUsername(String username) {
+        this.username = username;
         return this;
     }
 

@@ -39,7 +39,7 @@ public class JwtAuthProvider {
 
         JwtUserDetails jwtUserDetails = new JwtUserDetails(
                 user.getId(),
-                user.getUserName(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getFirstName(),
                 user.getLastName(),

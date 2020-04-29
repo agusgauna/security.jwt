@@ -21,10 +21,10 @@ public class DataAuthorityLoader implements ApplicationRunner {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DataAuthorityLoader.class);
 
-    @Autowired @Qualifier("authorityRepositor")
+    @Autowired @Qualifier("authorityRepository")
     private AuthorityRepository authorityRepository;
 
-    @Value("${spring.application, env}")
+    @Value("${spring.application.env}")
     private String appEnv;
 
     @Override

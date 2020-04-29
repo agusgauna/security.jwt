@@ -17,7 +17,7 @@ public class AuthServices {
     @Autowired @Qualifier("jwtAuthProvider")
     private JwtAuthProvider jwtAuthProvider;
 
-    @Autowired @Qualifier("authenticationManager")
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     public String jwtNewToken(JwtAuthRequestBody body) {

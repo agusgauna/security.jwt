@@ -9,7 +9,7 @@ import java.util.Collection;
 public class JwtUserDetails implements UserDetails {
 
     private final Long id;
-    private final String userName;
+    private final String username;
     private final String password;
     private final String firstName;
     private final String lastName;
@@ -19,12 +19,12 @@ public class JwtUserDetails implements UserDetails {
 
     public JwtUserDetails(
             Long id,
-            String userName, String password,
+            String username, String password,
             String firstName, String lastName,
             String email, Collection<? extends GrantedAuthority> authorities,
             Boolean enabled) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,10 +36,6 @@ public class JwtUserDetails implements UserDetails {
     @JsonIgnore
     public Long getId() {
         return id;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 
     public String getFirstName() {
@@ -66,7 +62,7 @@ public class JwtUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override @JsonIgnore

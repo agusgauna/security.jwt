@@ -29,13 +29,6 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     private RestAuthEntryPoint restAuthEntryPoint;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                .userDetailsService(jwtUserDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
-
-    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
@@ -44,6 +37,13 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(authTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+                .userDetailsService(jwtUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -56,7 +56,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthTokenFilter();
     }
 
-    @Override @Bean
+    @Bean @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

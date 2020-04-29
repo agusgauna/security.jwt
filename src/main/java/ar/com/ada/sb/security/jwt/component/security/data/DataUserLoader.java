@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
+@Component @Order(2)
 public class DataUserLoader implements ApplicationRunner {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DataAuthorityLoader.class);
@@ -24,10 +27,10 @@ public class DataUserLoader implements ApplicationRunner {
     @Autowired @Qualifier("userRepository")
     private UserRepository userRepository;
 
-    @Autowired @Qualifier("authorityRepositor")
+    @Autowired @Qualifier("authorityRepository")
     private AuthorityRepository authorityRepository;
 
-    @Value("${spring.application, env}")
+    @Value("${spring.application.env}")
     private String appEnv;
 
     @Autowired
@@ -54,7 +57,7 @@ public class DataUserLoader implements ApplicationRunner {
 
             User admin = new User()
                     .setId(1L)
-                    .setUserName("admin")
+                    .setUsername("admin")
                     .setPassword(passwordEncoder.encode("admin"))
                     .setFirstName("admin")
                     .setLastName("admin")
@@ -66,7 +69,7 @@ public class DataUserLoader implements ApplicationRunner {
 
             User manager = new User()
                     .setId(2L)
-                    .setUserName("manager")
+                    .setUsername("manager")
                     .setPassword(passwordEncoder.encode("manager"))
                     .setFirstName("manager")
                     .setLastName("manager")
@@ -77,7 +80,7 @@ public class DataUserLoader implements ApplicationRunner {
 
             User user = new User()
                     .setId(3L)
-                    .setUserName("user")
+                    .setUsername("user")
                     .setPassword(passwordEncoder.encode("user"))
                     .setFirstName("user")
                     .setLastName("user")
